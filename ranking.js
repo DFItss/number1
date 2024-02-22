@@ -1,7 +1,9 @@
 const {MongoClient} = require('mongodb');
 
-async function ranking(lecture, student){
 
+async function ranking(lecture, student){ 
+// ranking(과목명,학번) ex)ranking("자료구조",201711129) 학번까지 입력했을때 해당 과목의 해당학생의 석차가 출력.
+// ranking(과목명,학번) ex)ranking("자료구조") 과목명만 입력하고 학번을 비울 시 해당 과목의 석차 출력.
   const uri = process.env.DB_LOCAL_URL;
   const client = new MongoClient(uri);
   const collection = client.db("number1").collection("student_lecture");
@@ -48,6 +50,4 @@ async function ranking(lecture, student){
   }
   await client.close();
 };
-
-// ranking("자료구조")
-ranking("자료구조",201711129)
+module.exports={ranking};

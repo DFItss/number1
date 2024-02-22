@@ -60,3 +60,4 @@ async function insertDummyData() {
 
 // 함수 호출
 insertDummyData();
+
