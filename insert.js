@@ -141,5 +141,3 @@ enrol(console.error);
 
 module.exports={student_insert, professor_insert, major_insert, 
    lecture_insert, enrol, createdoc};  
-
- 
