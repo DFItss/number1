@@ -2,7 +2,7 @@
 const { MongoClient } = require('mongodb');
 
 // MongoDB 접속 정보
-const uri = process.env.DB_ATLAS_URL;
+const uri = process.env.DB_LOCAL_URL;
 const dbName = 'number1'; // 데이터베이스 이름
 
 // 더미 데이터

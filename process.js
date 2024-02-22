@@ -1,12 +1,18 @@
 let happy1 = true;
-const Input = require("./userInput");
+let Input = require("./userInput");
+let lectureList =require("./lecture_list");
+let majorList=require("./major_list");////////////
+let Login = require("./login");
+
+// const Login1=require("./login");
+const insert=require("./insert");
+// const Select=require("./select_table,select_tuple")
 
 
-async function main() {
+async function index() {
 
     while (happy1) {
         console.log("수강신청 관리 시스템에 오신 것을 환영합니다.");
-        console.log("어떤 계정으로 접속하시겠습니까?");
         console.log("1. 관리자 2. 이용자 3. 종료");
 
         const user = await Input.getUserInput();
@@ -15,13 +21,16 @@ async function main() {
 
         if (user === "1") {
             console.log("로그인이 필요합니다.");
-            await wait(500)
-            console.log("아이디를 입력합니다.");
+
+
+            await Login.main();//로그인 함수 삽입
+            await Login.login();
+           
+            
+
+
             await wait(500);
-            const id = await Input.getUserInput();
-            await wait(500);
-            console.log("비밀번호를 입력하세요");
-            const password = await Input.getUserInput();
+           
             console.clear();
 
             let happy2 = true;
@@ -30,7 +39,6 @@ async function main() {
                 await wait(500);
                 console.log("1.학생 2.강의 3.교수 4.뒤로가기");
                 const managemenu = await Input.getUserInput();
-                
                 if (managemenu === "1") {
                    
                     let test = true;
@@ -42,15 +50,22 @@ async function main() {
 
                         if (studentmenu === "1") {
                             await wait(500)
-                            console.log("학생 관리 함수1")
+                         
+                     
+                            await insert.student_insert();//학생 추가하기 함수 삽입 
+                          
+
                             continue;
                         } else if (studentmenu === "2") {
                             await wait(500)
-                            console.log("학생관리 함수2")
+                            //이 파일에서 안에 있는 함수를 따로 적어준다. (학생 검사하기 함수 삽입)
+                          
                             continue;
                         } else if (studentmenu === "3") {
-                            console.log("학생 관리 함수3")
+                            
                             await wait(500)
+
+
                             continue;
                         } else if (studentmenu === "4") {
                             console.log("학생 관리 함수4")
@@ -80,11 +95,13 @@ async function main() {
                     const majormenu = await Input.getUserInput();
                     if (majormenu === "1") {
                         await wait(500)
-                        console.log("강의 관리 함수1")
+                      
+                      await insert.lecture_insert();//추가하기 함수 삽입
                         continue;
                     } else if (majormenu === "2") {
                         await wait(500)
-                        console.log("강의관리 함수2")
+
+                       
                         continue;
                     } else if (majormenu === "3") {
                         console.log("강의 관리 함수3")
@@ -119,8 +136,10 @@ async function main() {
                     const professmenu = await Input.getUserInput();
                     if (professmenu === "1") {
                         await wait(500)
-                        console.log("강의 관리 함수1")
-                        continue;
+                        await insert.professor_insert();
+                     
+                       return false;
+                        
                     } else if (professmenu === "2") {
                         await wait(500)
                         console.log("강의관리 함수2")
@@ -167,8 +186,8 @@ async function main() {
                 console.clear();
 
                 if (majormanage === "1") {
-                    console.log("신청할 과목의 과목번호를 입력하세요");
-                    let lectureId = await Input.getUserInput();
+                
+                  await insert.enrol();
                     continue;
                 } else if (majormanage === "2") {
                     console.log("취소할 과목의 과목번호를 입력하세요 ");
@@ -188,6 +207,7 @@ async function main() {
     }
 }
 
-main();
+index();
+
 
 const wait = (timeToDelay) => new Promise((resolve) => setTimeout(resolve, timeToDelay));

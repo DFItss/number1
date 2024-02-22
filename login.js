@@ -1,5 +1,6 @@
 const { MongoClient } = require('mongodb');
 const readline = require('readline');
+const client = new MongoClient(uri);
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -9,7 +10,7 @@ const rl = readline.createInterface({
 function getUserInput(prompt) {
     return new Promise((resolve, reject) => {
         rl.question(prompt, (answer) => {
-            rl.pause(); 
+            rl.pause();
             resolve(answer);
         });
     });
@@ -24,7 +25,7 @@ async function login(client, dbname) {
 
         const studentNumber = parseInt(username);
 
-        const user = await client.db(dbname).collection('login').findOne({학번:studentNumber, 비밀번호:password });
+        const user = await client.db(dbname).collection('login').findOne({ 학번: studentNumber, 비밀번호: password });
 
         if (user) {
             loggedIn = true;
@@ -38,8 +39,8 @@ async function login(client, dbname) {
 
 async function main() {
     const uri = process.env.DB_LOCAL_URL;
-    const client = new MongoClient(uri);
-    const dbname = 'test';
+   
+    const dbname = 'number1'; // Set the database name here
 
     try {
         await client.connect();
@@ -59,4 +60,7 @@ module.exports = { getUserInput, login, main };
     } catch (error) {
         console.error(error);
     }
-})();
+})
+
+
+// ();
