@@ -23,7 +23,6 @@ async function index() {
             console.log("로그인이 필요합니다.");
 
 
-            await Login.main();//로그인 함수 삽입
             await Login.login();
            
             

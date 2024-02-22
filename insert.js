@@ -137,7 +137,5 @@ async function createdoc(client, dbname, colname, doc){
    console.log(`성공적으로 삽입하였습니다.`);
 };
 
-// enrol(console.error);
-
 module.exports={student_insert, professor_insert, major_insert, 
    lecture_insert, enrol, createdoc};  

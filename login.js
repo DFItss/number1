@@ -1,32 +1,27 @@
 const { MongoClient } = require('mongodb');
 const readline = require('readline');
-const client = new MongoClient(uri);
+const Input = require('./userInput')
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
 
-function getUserInput(prompt) {
-    return new Promise((resolve, reject) => {
-        rl.question(prompt, (answer) => {
-            rl.pause();
-            resolve(answer);
-        });
-    });
-}
+async function login() {
+    const uri = process.env.DB_LOCAL_URL;
+    const client = new MongoClient(uri);
+    const dbname = 'number1';
+    await client.connect();
 
-async function login(client, dbname) {
-    let loggedIn = false;
+    try {
+        let loggedIn = false;
 
     while (!loggedIn) {
-        const username = await getUserInput('사용자(학번): ');
-        const password = await getUserInput('비밀번호: ');
 
-        const studentNumber = parseInt(username);
+        process.stdout.write('id : ')
+        const username = await Input.getUserInput('사용자(학번): ');
+        process.stdout.write('password : ')
+        const password = await Input.getUserInput('비밀번호: ');
+        const studentNumber = username;
 
-        const user = await client.db(dbname).collection('login').findOne({ 학번: studentNumber, 비밀번호: password });
-
+        const user = await client.db(dbname).collection('manager').find({id:studentNumber, password:password });
+        
         if (user) {
             loggedIn = true;
             console.log('로그인 성공');
@@ -34,17 +29,6 @@ async function login(client, dbname) {
             console.log('로그인 실패! 다시 입력해주세요');
         }
     }
-    rl.close();
-}
-
-async function main() {
-    const uri = process.env.DB_LOCAL_URL;
-   
-    const dbname = 'number1'; // Set the database name here
-
-    try {
-        await client.connect();
-        await login(client, dbname);
     } catch (error) {
         console.error(error);
     } finally {
@@ -52,15 +36,4 @@ async function main() {
     }
 }
 
-module.exports = { getUserInput, login, main };
-
-(async () => {
-    try {
-        await main();
-    } catch (error) {
-        console.error(error);
-    }
-})
-
-
-// ();
+module.exports = {login};
