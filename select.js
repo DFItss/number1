@@ -22,7 +22,7 @@ async function listall(){
    }
 };
 
-async function find(){
+async function find(table){
    //const uri = process.env.DB_LOCAL_URL;
     const uri = process.env.DB_ATLAS_URL;
    // console.log(uri);
@@ -31,10 +31,9 @@ async function find(){
     try {
       await client.connect();
       const dbname = 'number1';
-      const colname = 'lecture';
       let pk = await Input.getUserInput();
       pk = Number(pk)
-      let pkname = `${colname}_id`;
+      let pkname = `${table}_id`;
       console.log(typeof(pk))
       console.log(pkname);
       let qry = {}
@@ -42,7 +41,7 @@ async function find(){
       console.log(qry);
       console.log(typeof(qry));
       //  let result = await client.db(dbname).collection(colname).find({pkname : pk}).toArray();
-      let result = await client.db(dbname).collection(colname).find(qry).toArray();
+      let result = await client.db(dbname).collection(table).find(qry).toArray();
       console.log(typeof(result));
       console.table(result);
    } finally {
