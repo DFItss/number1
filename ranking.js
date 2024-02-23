@@ -2,10 +2,15 @@ const {MongoClient} = require('mongodb');
 
 // ranking(과목명,학번) ex)ranking("자료구조",201711129) 학번까지 입력했을때 해당 과목의 해당학생의 석차가 출력.
 // ranking(과목명,학번) ex)ranking("자료구조") 과목명만 입력하고 학번을 비울 시 해당 과목의 석차 출력.
+
+
+
 async function ranking(lecture, student){ 
   const uri = process.env.DB_LOCAL_URL;
   const client = new MongoClient(uri);
   const collection = client.db("number1").collection("student_lecture");
+
+  
 
   // student_lecture collection의 lecture_id와 lacture collection의 lecture_id를 매칭하여 student_lecture collection의 모든 내용과 lacture collection의 과목명까지 조회가능.
   const result = await collection.aggregate([
@@ -48,6 +53,13 @@ async function ranking(lecture, student){
       }
     });
   }
+ 
   await client.close();
 };
+
+
 module.exports={ranking};
+
+
+
+//test
