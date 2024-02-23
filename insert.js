@@ -117,7 +117,6 @@ async function enrol(id){//수강신청하기 id인자값 추가하였음
    const client = new MongoClient(uri);
    try {
       await client.connect();
-      // let id = 201911869;
       console.log('수강 할 강의의 번호를 입력하시오')
       await LList.lecture_list();
       let num = await Input.getUserInput();

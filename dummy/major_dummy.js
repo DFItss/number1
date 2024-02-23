@@ -12,7 +12,7 @@ const dummyData = [
     { major_id: 1, college: '정보융합대학', major_name: '컴퓨터 공학' },
     { major_id: 2, college: '공과대학', major_name: '전자 공학' },
     { major_id: 3, college: '공과대학', major_name: '기계 공학' },
-    { major_id: 4, college: '정보융합대학', major_name: '미디어커뮤니케이션' },
+    { major_id: 4, college: '정보융합대학', major_name: '정보 통신 공학' },
     { major_id: 5, college: '경영대학', major_name: '경영학부' },
     { major_id: 6, college: '자연과학대학', major_name: '물리학과' },
     { major_id: 7, college: '자연과학대학', major_name: '간호학과' }
