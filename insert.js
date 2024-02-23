@@ -3,7 +3,7 @@ const MList = require('./major_list.js');
 const LList = require('./lecture_list.js');
 const Input = require('./userInput.js');
 
-async function student_insert(){//학생 추가하기 
+async function student_insert(){
    const uri = process.env.DB_LOCAL_URL;
    const client = new MongoClient(uri);
    console.log(`학번을 입력해주세요`);
@@ -38,7 +38,7 @@ async function student_insert(){//학생 추가하기
    }
 };
 
-async function professor_insert(){//교수 추가하기 
+async function professor_insert(){
    const uri = process.env.DB_LOCAL_URL;
    const client = new MongoClient(uri);
    console.log(`교수번호를 입력해주세요`);
@@ -112,12 +112,12 @@ async function lecture_insert(){//강의 추가하기
    }
 };  
 
-async function enrol(){//수강신청하기 
+async function enrol(id){//수강신청하기 
    const uri = process.env.DB_LOCAL_URL;
    const client = new MongoClient(uri);
    try {
       await client.connect();
-      let id = 201911869;
+      // let id = 201911869;
       console.log('수강 할 강의의 번호를 입력하시오')
       await LList.lecture_list();
       let num = await Input.getUserInput();
