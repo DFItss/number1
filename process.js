@@ -185,6 +185,10 @@ async function index() {
                 console.clear();
 
                 if (majormanage === "1") {
+
+                let st_id = await Input.getUserInput();
+
+                await insert.enrol(Number(st_id));//수강신청 
                 
                   await insert.enrol();
                     continue;
