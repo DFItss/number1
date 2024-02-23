@@ -214,15 +214,23 @@ async function index() {
             // console.log(`환영합니다! ${studentId}님 `);
             let happy3 = true;
 
+
+
+
+
+
             while (happy3) {
                 console.log(`1.수강신청하기 2.수강취소하기 3.수강내역 확인하기 4.뒤로가기 5.종료`)
                 const majormanage = await Input.getUserInput();
                 console.clear();
 
                 if (majormanage === "1") {
+
+
                   console.log("학번을 입력하세요");
                   let stu_id=await Input.getUserInput();
                   await insert.enrol(Number(stu_id));//수강신청 하기 함수 삽입
+
                     continue;
                 } else if (majormanage === "2") {
 
@@ -235,9 +243,14 @@ async function index() {
                     continue;
                 } else if (majormanage === "3") {
 
+                       
 
-                    let table="student"//인자 입력
-                        await select.listall(table);
+
+                        console.log("가나다");
+                        let id1 = await Input.getUserInput();
+
+                        console.log(id1);
+                        await select.find_stu_lec(Number(id1));
                  
                     continue;
                 } else if (majormanage === "4") {
