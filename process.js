@@ -121,7 +121,7 @@ async function index() {
                     } else if (majormenu === "3") {
                         let table="lecture"//인자 입력
                         //강의 확인하기 함수 삽입 
-                        await select.listall(table);//student_collection에 student_lecture_id 속성 추가 입력 필요 
+                        await select.listall(table); 
                           
                         await wait(500)
                         continue;
