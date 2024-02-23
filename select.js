@@ -34,13 +34,8 @@ async function find(table){
       let pk = await Input.getUserInput();
       pk = Number(pk)
       let pkname = `${table}_id`;
-      console.log(typeof(pk))
-      console.log(pkname);
       let qry = {}
       qry[pkname] = pk;
-      console.log(qry);
-      console.log(typeof(qry));
-      //  let result = await client.db(dbname).collection(colname).find({pkname : pk}).toArray();
       let result = await client.db(dbname).collection(table).find(qry).toArray();
       console.log(typeof(result));
       console.table(result);

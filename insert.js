@@ -117,7 +117,7 @@ async function enrol(){
    const client = new MongoClient(uri);
    try {
       await client.connect();
-      let id = 201911869;
+      let id = 201911000;
       console.log('수강 할 강의의 번호를 입력하시오')
       await LList.lecture_list();
       let num = await Input.getUserInput();
@@ -129,7 +129,7 @@ async function enrol(){
    }
 
 }
-
+enrol(console.error);
 async function createdoc(client, dbname, colname, doc){
    const dbobj = await client.db(dbname);
    const col = dbobj.collection(colname);
