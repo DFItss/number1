@@ -1,7 +1,7 @@
 const Input = require("./userInput");
 const { MongoClient } = require('mongodb');
 
-async function student_update(client){
+async function student_update(){
     const uri = process.env.DB_LOCAL_URL;
     const client = new MongoClient(uri);
 
@@ -119,7 +119,7 @@ async function student_update(client){
     await client.close();
     } //student_update end
 
-async function professor_update(client) {
+async function professor_update() {
     const uri = process.env.DB_LOCAL_URL;
     const client = new MongoClient(uri);
 
@@ -200,7 +200,7 @@ async function professor_update(client) {
     await client.close();
   } //professor_update end
 
-async function lecture_update(client) {
+async function lecture_update() {
     const uri = process.env.DB_LOCAL_URL;
     const client = new MongoClient(uri);
 
@@ -307,3 +307,5 @@ async function getMajorList(client) {
 
 module.exports = {student_update, professor_update, lecture_update,
 getMajorList, wait}
+
+student_update();
