@@ -24,7 +24,7 @@ async function index() {
         if (user === "1") {
             console.log("로그인이 필요합니다.");
 
-            // await Login.login();//잘못된 번호를 입력해도 로그인 성공이 뜹니다. 
+            await Login.login();
            
             await wait(500);
            
