@@ -100,6 +100,6 @@ function wait(timeToDelay){
   return new Promise((resolve) => setTimeout(resolve, timeToDelay))
 }
 
-// module.exports = main;
+module.exports = {main1};
 
-main();
+// main();

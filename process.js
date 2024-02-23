@@ -5,9 +5,11 @@ let majorList=require("./major_list");
 let Login = require("./login");
 let select = require("./select");
 let Ranking = require("./ranking");
+let insert=require("./insert");
 
 
-const insert=require("./insert");
+let update=require("./update");
+let delete1=require("./delete");
 
 
 
@@ -67,12 +69,17 @@ async function index() {
 
                             continue;
                         } else if (studentmenu === "4") {
-                            console.log("학생 관리 함수4")
                             await wait(500)
+                             await update.student_update(); //학생 수정하기 함수 삽입/////
+
+                            
                             continue;
                         } else if (studentmenu === "5") {
                             await wait(500)
-                            console.log("학생 관리 함수5")
+
+                            let table="student";
+                            await delete1.delinfo(table);//학생 제거하기 함수 
+
                             continue;
                         } else if (studentmenu === "6") {
                             console.log("학생 관리 함수6")
@@ -119,12 +126,17 @@ async function index() {
                         await wait(500)
                         continue;
                     } else if (majormenu === "4") {
-                        console.log("강의 관리 함수4")
+
+                       await update.lecture_update();//강의 수정하기 함수 삽입//////
+
                         await wait(500)
                         continue;
                     } else if (majormenu === "5") {
                         await wait(500)
-                        console.log("강의 관리 함수5")
+
+                        let table="lecture";
+                        await delete1.delinfo(table);//강의 삭제하기 함수 삽입
+
                         continue;
                     } else if (majormenu === "6") {
                         console.log("강의 관리 함수6")
@@ -165,12 +177,18 @@ async function index() {
                        
                         continue;
                     } else if (professmenu === "4") {
-                        console.log("강의 관리 함수4")
+                     
                         await wait(500)
+
+                        await update.professor_update();//교수 수정하기 함수 삽입//////                
+
                         continue;
                     } else if (professmenu === "5") {
                         await wait(500)
-                        console.log("강의 관리 함수5")
+
+                        let table="professor";
+                        await delete1.delinfo(table);//교수 삭제하기 함수 삽입
+
                         continue;
                     } else if (professmenu === "6") {
                         await wait(500)
@@ -207,11 +225,18 @@ async function index() {
                   await insert.enrol(Number(stu_id));//수강신청 하기 함수 삽입
                     continue;
                 } else if (majormanage === "2") {
-                    // console.log("취소할 과목의 과목번호를 입력하세요 ");
-                    // let lectureId = await Input.getUserInput();
+
+                    // let table="student_lecture";
+                    // await delete1.delinfo(table);
+                    //수강내역 삭제하기 함수 삽입
+                    //스투던티 렉쳐 컬렉션에 스튜던트 렉쳐 아이디 속성 추가 필요?? 
+                    //데이터가 꼬이기 때문에 일단 주석처리 
+                    
                     continue;
                 } else if (majormanage === "3") {
-                    let table="student_lecture"//인자 입력
+
+
+                    let table="student"//인자 입력
                         await select.listall(table);
                  
                     continue;

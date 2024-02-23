@@ -1,9 +1,9 @@
 const {MongoClient} = require('mongodb');
 const Input = require('./userInput.js');
 
-async function del_info(table){
+async function delinfo(table){//-
   //const uri = process.env.DB_LOCAL_URL;
-  const uri = process.env.DB_ATLAS_URL;
+  const uri = process.env.DB_LOCAL_URL;
   const client = new MongoClient(uri);
   //테이블 이름을 전달 받아 자동으로 그 테이블을 사용
   try {
@@ -22,5 +22,5 @@ async function del_info(table){
   }
 };
 
-module.exports ={del_info};
+module.exports ={delinfo};
 

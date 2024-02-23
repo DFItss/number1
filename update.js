@@ -308,4 +308,3 @@ async function getMajorList(client) {
 module.exports = {student_update, professor_update, lecture_update,
 getMajorList, wait}
 
-student_update();
