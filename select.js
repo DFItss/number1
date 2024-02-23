@@ -43,9 +43,6 @@ async function find(table){//
       console.log(pkname);
       let qry = {}
       qry[pkname] = pk;
-      console.log(qry);
-      console.log(typeof(qry));
-      //  let result = await client.db(dbname).collection(colname).find({pkname : pk}).toArray();
       let result = await client.db(dbname).collection(table).find(qry).toArray();
       console.log(typeof(result));
       console.table(result);

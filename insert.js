@@ -129,7 +129,7 @@ async function enrol(id){//수강신청하기 id인자값 추가하였음
    }
 
 }
-
+// enrol(console.error);
 async function createdoc(client, dbname, colname, doc){
    const dbobj = await client.db(dbname);
    const col = dbobj.collection(colname);

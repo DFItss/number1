@@ -1,4 +1,5 @@
 const {MongoClient} = require('mongodb');
+const Input = require('./userInput.js');
 
 async function del_info(table){
   //const uri = process.env.DB_LOCAL_URL;

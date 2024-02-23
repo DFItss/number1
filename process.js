@@ -54,7 +54,7 @@ async function index() {
                             await wait(500)
 
                         let table="student"//인자 입력
-                        await select.find(table);//학생 검색하기 함수 삽입 
+                            await select.find(table);//학생 검색하기 함수 삽입 
                             continue;
                         } else if (studentmenu === "3") {
                             
