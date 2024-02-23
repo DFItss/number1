@@ -1,12 +1,20 @@
 let happy1 = true;
-const Input = require("./userInput");
+let Input = require("./userInput");
+let lectureList =require("./lecture_list");
+let majorList=require("./major_list");
+let Login = require("./login");
+let select = require("./select");
+let Ranking = require("./ranking");
 
 
-async function main() {
+const insert=require("./insert");
+
+
+
+async function index() {
 
     while (happy1) {
         console.log("수강신청 관리 시스템에 오신 것을 환영합니다.");
-        console.log("어떤 계정으로 접속하시겠습니까?");
         console.log("1. 관리자 2. 이용자 3. 종료");
 
         const user = await Input.getUserInput();
@@ -15,13 +23,11 @@ async function main() {
 
         if (user === "1") {
             console.log("로그인이 필요합니다.");
-            await wait(500)
-            console.log("아이디를 입력합니다.");
+
+            // await Login.login();//잘못된 번호를 입력해도 로그인 성공이 뜹니다. 
+           
             await wait(500);
-            const id = await Input.getUserInput();
-            await wait(500);
-            console.log("비밀번호를 입력하세요");
-            const password = await Input.getUserInput();
+           
             console.clear();
 
             let happy2 = true;
@@ -30,7 +36,6 @@ async function main() {
                 await wait(500);
                 console.log("1.학생 2.강의 3.교수 4.뒤로가기");
                 const managemenu = await Input.getUserInput();
-                
                 if (managemenu === "1") {
                    
                     let test = true;
@@ -41,16 +46,25 @@ async function main() {
                         const studentmenu = await Input.getUserInput();
 
                         if (studentmenu === "1") {
-                            await wait(500)
-                            console.log("학생 관리 함수1")
+                            await wait(500)    
+                                           
+                            await insert.student_insert();//학생 추가하기 함수 삽입 
+                          
+
                             continue;
                         } else if (studentmenu === "2") {
                             await wait(500)
-                            console.log("학생관리 함수2")
+
+                        let table="student"//인자 입력
+                            await select.find(table);//학생 검색하기 함수 삽입 
                             continue;
                         } else if (studentmenu === "3") {
-                            console.log("학생 관리 함수3")
+                            
                             await wait(500)
+                            let table="student"//인자 입력
+                            await select.listall(table);//학생 확인하기 함수 삽입
+
+
                             continue;
                         } else if (studentmenu === "4") {
                             console.log("학생 관리 함수4")
@@ -65,7 +79,16 @@ async function main() {
                             // test = false;
                             break;
                         } else if(studentmenu === "7"){
-                            console.log("순위 보는 함수")
+
+                            console.log("과목명을 입력하세요: ");
+                            const lecture = await Input.getUserInput(); 
+                            console.log("학번을 입력하세요: ");
+
+                            const student = await Input.getUserInput();
+                                                  
+                            await Ranking.ranking(lecture, Number(student));//학생 순위 판별 함수 삽입 
+                            //학번 인자값을 입력하고 값을 받으면 문자열로 받기 때문에 Number를 붙여 숫자로 만들어준다. 
+                            // await Ranking.ranking("자료구조",2);
                         } else if(studentmenu === "8"){
                             console.log("종료합니다.");
                             process.exit(0);
@@ -80,14 +103,19 @@ async function main() {
                     const majormenu = await Input.getUserInput();
                     if (majormenu === "1") {
                         await wait(500)
-                        console.log("강의 관리 함수1")
+                      
+                      await insert.lecture_insert();//강의 추가하기 함수 삽입
                         continue;
                     } else if (majormenu === "2") {
                         await wait(500)
-                        console.log("강의관리 함수2")
+                        let table="lecture"//인자 입력
+                        await select.find(table);//강의 검색하기 함수 삽입
                         continue;
                     } else if (majormenu === "3") {
-                        console.log("강의 관리 함수3")
+                        let table="lecture"//인자 입력
+                        //강의 확인하기 함수 삽입 
+                        await select.listall(table);//student_collection에 student_lecture_id 속성 추가 입력 필요 
+                          
                         await wait(500)
                         continue;
                     } else if (majormenu === "4") {
@@ -119,15 +147,22 @@ async function main() {
                     const professmenu = await Input.getUserInput();
                     if (professmenu === "1") {
                         await wait(500)
-                        console.log("강의 관리 함수1")
-                        continue;
+                        await insert.professor_insert();//교수 추가하기 함수 삽입 
+                     
+                       continue;
+                        
                     } else if (professmenu === "2") {
                         await wait(500)
-                        console.log("강의관리 함수2")
+                        let table="professor"//인자 입력
+                        await select.find(table);//교수 검색하기 함수 삽입
+                     
                         continue;
                     } else if (professmenu === "3") {
                         await wait(500)
-                        console.log("강의 관리 함수3")
+                        
+                        let table="professor"//인자 입력
+                        await select.listall(table);//교수 확인하기 함수 삽입 
+                       
                         continue;
                     } else if (professmenu === "4") {
                         console.log("강의 관리 함수4")
@@ -155,31 +190,38 @@ async function main() {
                 }
             }
         } else if (user === "2") {
-            console.log(`수강신청을 위한 학번을 입력하십시오`);
-            const studentId = await Input.getUserInput();
+            // console.log(`수강신청을 위한 학번을 입력하십시오`);
+            // const studentId = await Input.getUserInput();
             console.clear();
-            console.log(`환영합니다! ${studentId}님 `);
+            // console.log(`환영합니다! ${studentId}님 `);
             let happy3 = true;
 
             while (happy3) {
-                console.log(`1.수강신청하기 2.수강취소하기 3.수강내역 확인하기 4.뒤로가기 5.처음으로 돌아가기`)
+                console.log(`1.수강신청하기 2.수강취소하기 3.수강내역 확인하기 4.뒤로가기 5.종료`)
                 const majormanage = await Input.getUserInput();
                 console.clear();
 
                 if (majormanage === "1") {
-                    console.log("신청할 과목의 과목번호를 입력하세요");
-                    let lectureId = await Input.getUserInput();
+                  console.log("학번을 입력하세요");
+                  let stu_id=await Input.getUserInput();
+                  await insert.enrol(Number(stu_id));//수강신청 하기 함수 삽입
                     continue;
                 } else if (majormanage === "2") {
-                    console.log("취소할 과목의 과목번호를 입력하세요 ");
-                    let lectureId = await Input.getUserInput();
+                    // console.log("취소할 과목의 과목번호를 입력하세요 ");
+                    // let lectureId = await Input.getUserInput();
                     continue;
                 } else if (majormanage === "3") {
-                    console.log(`${studentId}님의 수강신청내역 입니다.`);
+                    let table="student_lecture"//인자 입력
+                        await select.listall(table);
+                 
                     continue;
                 } else if (majormanage === "4") {
                     break;
-                }
+                } else(majormanage==="5")
+
+                    console.log("프로그램을 종료합니다.");
+                    process.exit(0);
+                
             }
         } else if (user === "3") {
             console.log("프로그램을 종료합니다.");
@@ -188,6 +230,7 @@ async function main() {
     }
 }
 
-main();
+index();
+
 
 const wait = (timeToDelay) => new Promise((resolve) => setTimeout(resolve, timeToDelay));

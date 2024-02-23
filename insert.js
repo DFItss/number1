@@ -4,7 +4,7 @@ const LList = require('./lecture_list.js');
 const Input = require('./userInput.js');
 
 async function student_insert(){
-   const uri = process.env.DB_ATLAS_URL;
+   const uri = process.env.DB_LOCAL_URL;
    const client = new MongoClient(uri);
    console.log(`학번을 입력해주세요`);
    let student_id = await Input.getUserInput();
@@ -39,7 +39,7 @@ async function student_insert(){
 };
 
 async function professor_insert(){
-   const uri = process.env.DB_ATLAS_URL;
+   const uri = process.env.DB_LOCAL_URL;
    const client = new MongoClient(uri);
    console.log(`교수번호를 입력해주세요`);
    let id = await Input.getUserInput();
@@ -62,7 +62,7 @@ async function professor_insert(){
 };
 
 async function major_insert(){
-   const uri = process.env.DB_ATLAS_URL;
+   const uri = process.env.DB_LOCAL_URL;
    const client = new MongoClient(uri);
    console.log(`학과번호를 입력해주세요`);
    let id = await Input.getUserInput();
@@ -80,8 +80,8 @@ async function major_insert(){
       await client.close();
    }
 };
-async function lecture_insert(){
-   const uri = process.env.DB_ATLAS_URL;
+async function lecture_insert(){//강의 추가하기 
+   const uri = process.env.DB_LOCAL_URL;
    const client = new MongoClient(uri);
    console.log(`강의번호를 입력해주세요`);
    let id = await Input.getUserInput();
@@ -112,12 +112,12 @@ async function lecture_insert(){
    }
 };  
 
-async function enrol(){
-   const uri = process.env.DB_ATLAS_URL;
+async function enrol(id){//수강신청하기 id인자값 추가하였음
+   const uri = process.env.DB_LOCAL_URL;
    const client = new MongoClient(uri);
    try {
       await client.connect();
-      let id = 201911000;
+      // let id = 201911869;
       console.log('수강 할 강의의 번호를 입력하시오')
       await LList.lecture_list();
       let num = await Input.getUserInput();
@@ -129,7 +129,7 @@ async function enrol(){
    }
 
 }
-enrol(console.error);
+// enrol(console.error);
 async function createdoc(client, dbname, colname, doc){
    const dbobj = await client.db(dbname);
    const col = dbobj.collection(colname);
