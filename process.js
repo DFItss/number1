@@ -173,10 +173,10 @@ async function index() {
                 }
             }
         } else if (user === "2") {
-            console.log(`수강신청을 위한 학번을 입력하십시오`);
-            const studentId = await Input.getUserInput();
+            // console.log(`수강신청을 위한 학번을 입력하십시오`);
+            // const studentId = await Input.getUserInput();
             console.clear();
-            console.log(`환영합니다! ${studentId}님 `);
+            // console.log(`환영합니다! ${studentId}님 `);
             let happy3 = true;
 
             while (happy3) {
@@ -193,7 +193,7 @@ async function index() {
                     let lectureId = await Input.getUserInput();
                     continue;
                 } else if (majormanage === "3") {
-                    console.log(`${studentId}님의 수강신청내역 입니다.`);
+                    // console.log(`${studentId}님의 수강신청내역 입니다.`);
                     continue;
                 } else if (majormanage === "4") {
                     break;
