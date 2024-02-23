@@ -59,7 +59,7 @@ async function ranking(lecture, student){
 
 
 module.exports={ranking};
-
+// ranking("컴퓨터 구조")
 
 
 //test
