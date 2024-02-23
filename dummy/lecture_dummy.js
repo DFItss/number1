@@ -15,7 +15,7 @@ const dummyData = [
     lecture_credit: 3,
     lecture_type: 'CS',
     major_id: 1,
-    professor_id: 123456789
+    professor_id: 111111111
   },
   {
     lecture_id: 2,
@@ -25,7 +25,7 @@ const dummyData = [
     lecture_credit: 3,
     lecture_type: 'CS',
     major_id: 1,
-    professor_id: 987654321
+    professor_id: 121212121
   },
   {
     lecture_id: 3,
@@ -35,27 +35,67 @@ const dummyData = [
     lecture_credit: 3,
     lecture_type: 'CS',
     major_id: 1,
-    professor_id: 887741321
+    professor_id: 222222222
   },
   {
     lecture_id: 4,
-    lecture_name: '웹프로그래밍',
+    lecture_name: '네트워크 보안',
     lecture_day: 'Tue',
     lecture_time: '9:00 AM - 11:00 AM',
     lecture_credit: 3,
     lecture_type: 'CS',
-    major_id: 1,
-    professor_id: 496276344
+    major_id: 4,
+    professor_id: 232323232
   },
   {
     lecture_id: 5,
-    lecture_name: '프로그래밍언어',
+    lecture_name: '컴퓨터네트워크',
     lecture_day: 'Tue',
     lecture_time: '9:00 AM - 11:00 AM',
     lecture_credit: 3,
     lecture_type: 'CS',
-    major_id: 1,
-    professor_id: 789654123
+    major_id: 4,
+    professor_id: 333333333
+  },
+  {
+    lecture_id: 6,
+    lecture_name: '디시털 신호처리',
+    lecture_day: 'Mon',
+    lecture_time: '9:00 AM - 11:00 AM',
+    lecture_credit: 3,
+    lecture_type: 'CS',
+    major_id: 4,
+    professor_id: 343434343
+  },
+  {
+    lecture_id: 7,
+    lecture_name: '기계공학의 이해',
+    lecture_day: 'Mon',
+    lecture_time: '1:00 PM - 03:00 PM',
+    lecture_credit: 3,
+    lecture_type: 'CS',
+    major_id: 3,
+    professor_id: 444444444
+  },
+  {
+    lecture_id: 8,
+    lecture_name: '기초전기전자회로',
+    lecture_day: 'Mon',
+    lecture_time: '1:00 PM - 03:00 PM',
+    lecture_credit: 3,
+    lecture_type: 'CS',
+    major_id: 3,
+    professor_id: 454545454
+  },
+  {
+    lecture_id: 9,
+    lecture_name: '기계공학실험',
+    lecture_day: 'Mon',
+    lecture_time: '1:00 PM - 03:00 PM',
+    lecture_credit: 3,
+    lecture_type: 'CS',
+    major_id: 3,
+    professor_id: 555555555
   },
   // 나머지 더미 데이터 추가
 ];
