@@ -22,7 +22,7 @@ async function index() {
         if (user === "1") {
             console.log("로그인이 필요합니다.");
 
-            await Login.login();
+            // await Login.login();//잘못된 번호를 입력해도 로그인 성공이 뜹니다. 
            
             await wait(500);
            
@@ -54,14 +54,13 @@ async function index() {
                             await wait(500)
 
                         let table="student"//인자 입력
-                        await select.find(table);
-
+                        await select.find(table);//학생 검색하기 함수 삽입 
                             continue;
                         } else if (studentmenu === "3") {
                             
                             await wait(500)
                             let table="student"//인자 입력
-                            await select.listall(table);
+                            await select.listall(table);//학생 확인하기 함수 삽입
 
 
                             continue;
@@ -78,7 +77,16 @@ async function index() {
                             // test = false;
                             break;
                         } else if(studentmenu === "7"){
-                            console.log("순위 보는 함수")
+
+                            console.log("과목명을 입력하세요: ");
+                            const lecture = await Input.getUserInput(); 
+                            console.log("학번을 입력하세요: ");
+
+                            const student = await Input.getUserInput();
+                                                  
+                            await Ranking.ranking(lecture, Number(student));//학생 순위 판별 함수 삽입 
+                            //학번 인자값을 입력하고 값을 받으면 문자열로 받기 때문에 Number를 붙여 숫자로 만들어준다. 
+                            // await Ranking.ranking("자료구조",2);
                         } else if(studentmenu === "8"){
                             console.log("종료합니다.");
                             process.exit(0);
@@ -94,15 +102,18 @@ async function index() {
                     if (majormenu === "1") {
                         await wait(500)
                       
-                      await insert.lecture_insert();//추가하기 함수 삽입
+                      await insert.lecture_insert();//강의 추가하기 함수 삽입
                         continue;
                     } else if (majormenu === "2") {
                         await wait(500)
-
-                       
+                        let table="lecture"//인자 입력
+                        await select.find(table);//강의 검색하기 함수 삽입
                         continue;
                     } else if (majormenu === "3") {
-                        console.log("강의 관리 함수3")
+                        let table="lecture"//인자 입력
+                        //강의 확인하기 함수 삽입 
+                        await select.listall(table);//student_collection에 student_lecture_id 속성 추가 입력 필요 
+                          
                         await wait(500)
                         continue;
                     } else if (majormenu === "4") {
@@ -134,17 +145,22 @@ async function index() {
                     const professmenu = await Input.getUserInput();
                     if (professmenu === "1") {
                         await wait(500)
-                        await insert.professor_insert();
+                        await insert.professor_insert();//교수 추가하기 함수 삽입 
                      
                        return false;
                         
                     } else if (professmenu === "2") {
                         await wait(500)
-                        console.log("강의관리 함수2")
+                        let table="professor"//인자 입력
+                        await select.find(table);//교수 검색하기 함수 삽입
+                     
                         continue;
                     } else if (professmenu === "3") {
                         await wait(500)
-                        console.log("강의 관리 함수3")
+                        
+                        let table="professor"//인자 입력
+                        await select.listall(table);//교수 확인하기 함수 삽입 
+                       
                         continue;
                     } else if (professmenu === "4") {
                         console.log("강의 관리 함수4")
@@ -184,23 +200,26 @@ async function index() {
                 console.clear();
 
                 if (majormanage === "1") {
-
-                let st_id = await Input.getUserInput();
-
-                await insert.enrol(Number(st_id));//수강신청 
-                
-                  await insert.enrol();
+                  console.log("학번을 입력하세요");
+                  let stu_id=await Input.getUserInput();
+                  await insert.enrol(Number(stu_id));//수강신청 하기 함수 삽입
                     continue;
                 } else if (majormanage === "2") {
-                    console.log("취소할 과목의 과목번호를 입력하세요 ");
-                    let lectureId = await Input.getUserInput();
+                    // console.log("취소할 과목의 과목번호를 입력하세요 ");
+                    // let lectureId = await Input.getUserInput();
                     continue;
                 } else if (majormanage === "3") {
-                    // console.log(`${studentId}님의 수강신청내역 입니다.`);
+                    let table="student_lecture"//인자 입력
+                        await select.listall(table);
+                 
                     continue;
                 } else if (majormanage === "4") {
                     break;
-                }
+                } else(majormanage==="5")
+
+                    console.log("프로그램을 종료합니다.");
+                    process.exit(0);
+                
             }
         } else if (user === "3") {
             console.log("프로그램을 종료합니다.");
