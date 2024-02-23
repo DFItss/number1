@@ -44,21 +44,24 @@ async function index() {
                         const studentmenu = await Input.getUserInput();
 
                         if (studentmenu === "1") {
-                            await wait(500)
-                         
-                     
-                            await insert.student_insert();
+                            await wait(500)    
+                                           
+                            await insert.student_insert();//학생 추가하기 함수 삽입 
                           
 
                             continue;
                         } else if (studentmenu === "2") {
                             await wait(500)
-                            //이 파일에서 안에 있는 함수를 따로 적어준다. (학생 검사하기 함수 삽입)
-                          
+
+                        let table="student"//인자 입력
+                        await select.find(table);
+
                             continue;
                         } else if (studentmenu === "3") {
                             
                             await wait(500)
+                            let table="student"//인자 입력
+                            await select.listall(table);
 
 
                             continue;
