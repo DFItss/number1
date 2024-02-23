@@ -2,5 +2,3 @@
 package-lock.json
 package.json
 .env
-userInput.js
-connection.js
