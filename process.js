@@ -3,6 +3,8 @@ let Input = require("./userInput");
 let lectureList =require("./lecture_list");
 let majorList=require("./major_list");
 let Login = require("./login");
+let select = require("./select");
+let Ranking = require("./ranking");
 
 
 const insert=require("./insert");
@@ -147,7 +149,7 @@ async function index() {
                         await wait(500)
                         await insert.professor_insert();//교수 추가하기 함수 삽입 
                      
-                       return false;
+                       continue;
                         
                     } else if (professmenu === "2") {
                         await wait(500)
@@ -195,7 +197,7 @@ async function index() {
             let happy3 = true;
 
             while (happy3) {
-                console.log(`1.수강신청하기 2.수강취소하기 3.수강내역 확인하기 4.뒤로가기 5.처음으로 돌아가기`)
+                console.log(`1.수강신청하기 2.수강취소하기 3.수강내역 확인하기 4.뒤로가기 5.종료`)
                 const majormanage = await Input.getUserInput();
                 console.clear();
 
