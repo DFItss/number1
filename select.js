@@ -47,11 +47,33 @@ async function find(table){//
       console.log(typeof(result));
       console.table(result);
    } finally {
-       await client.close();
-    }
+      await client.close();
+   }
  };
+
+
+async function find_stu_lec(id){
+
+
+   const uri = process.env.DB_ATLAS_URL;
+
+   const client = new MongoClient(uri);
+
+   try {
+      await client.connect();
+      const dbname = 'number1';
+      const colname = 'student_lecture';
+      const projection = { name: 1 , price: 1};
+      const result = await client.db(dbname).collection(colname).find({"student_id": id}).toArray();
+      console.log(typeof(result));
+  console.log(result);
+   } finally {
+      await client.close();
+   }
+};
+
 
 //listall(console.error);
 // find(console.error)
 
-module.exports={find,listall};  
+module.exports={find,listall, find_stu_lec};  
