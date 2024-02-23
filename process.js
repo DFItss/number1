@@ -202,9 +202,9 @@ async function index() {
 
                 if (majormanage === "1") {
                     console.log("학번을 입력하세요")
-                  let st_id = await Input.getUserInput();
+                  
 
-                  await insert.enrol(Number(st_id));//수강신청 
+                  await insert.enrol();//수강신청 
                     continue;
                 } else if (majormanage === "2") {
                     // console.log("취소할 과목의 과목번호를 입력하세요 ");
