@@ -81,15 +81,12 @@ async function index() {
                             console.log("과목명을 입력하세요: ");
                             const lecture = await Input.getUserInput(); 
                             console.log("학번을 입력하세요: ");
+
                             const student = await Input.getUserInput();
                                                   
                             await Ranking.ranking(lecture, Number(student));
                             //학번 인자값을 입력하고 값을 받으면 문자열로 받기 때문에 Number를 붙여 숫자로 만들어준다. 
-
-
                             // await Ranking.ranking("자료구조",2);
-
-
                         } else if(studentmenu === "8"){
                             console.log("종료합니다.");
                             process.exit(0);
@@ -189,10 +186,9 @@ async function index() {
                 }
             }
         } else if (user === "2") {
-            // console.log(`수강신청을 위한 학번을 입력하십시오`);
-            // const studentId = await Input.getUserInput();
+           
             console.clear();
-            // console.log(`환영합니다! ${studentId}님 `);
+            
             let happy3 = true;
 
             while (happy3) {
@@ -201,20 +197,15 @@ async function index() {
                 console.clear();
 
                 if (majormanage === "1") {
-                    console.log("학번을 입력하세요")
-                  
-
-                  await insert.enrol();//수강신청 
+                
+                  await insert.enrol();
                     continue;
                 } else if (majormanage === "2") {
                     // console.log("취소할 과목의 과목번호를 입력하세요 ");
                     // let lectureId = await Input.getUserInput();
                     continue;
                 } else if (majormanage === "3") {
-                    // console.log(`${studentId}님의 수강신청내역 입니다.`);
-                    let table="student_lecture"//인자 입력
-                    await select.find(table);
-
+                    console.log(`${studentId}님의 수강신청내역 입니다.`);
                     continue;
                 } else if (majormanage === "4") {
                     break;

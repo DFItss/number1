@@ -112,7 +112,7 @@ async function lecture_insert(){//강의 추가하기
    }
 };  
 
-async function enrol(id){//수강신청하기 
+async function enrol(id){//수강신청하기 id인자값 추가하였음
    const uri = process.env.DB_LOCAL_URL;
    const client = new MongoClient(uri);
    try {
