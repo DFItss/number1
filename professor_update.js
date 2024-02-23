@@ -88,6 +88,7 @@ async function main1(client) {
 
   await wait(1000);
 } //main end
+
 // 데이터베이스에서 전공 목록을 가져오는 함수
 async function getMajorList(client) {
   const majorCollection = client.db('number1').collection('major');
