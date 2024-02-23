@@ -51,3 +51,4 @@ async function ranking(lecture, student){
   await client.close();
 };
 module.exports={ranking};
+ranking("컴퓨터 구조")

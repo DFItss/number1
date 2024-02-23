@@ -18,10 +18,13 @@ async function login() {
         const username = await Input.getUserInput('사용자(학번): ');
         process.stdout.write('password : ')
         const password = await Input.getUserInput('비밀번호: ');
-        const studentNumber = username;
+        // id는 문자열, pass는 int로 형 변환
+        const studentNumber = username.toString();
+        const studentPass = parseInt(password);
 
-        const user = await client.db(dbname).collection('manager').find({id:studentNumber, password:password });
-        
+        const user = await client.db(dbname).collection('manager').findOne({id:studentNumber, password:studentPass });
+        // console.log('user: '+username+' | '+'password : '+password+' | '+user)
+
         if (user) {
             loggedIn = true;
             console.log('로그인 성공');
