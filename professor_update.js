@@ -68,11 +68,14 @@ async function main1(client) {
       case "학과":
         const majors = await getMajorList(client);
         console.log("학과 목록:");
-        majors.forEach((major) => {
-        console.log(`-${major.major_name}`);
-        });
+        majors.forEach((major, index) => {
+          console.log(`${index+1}.${major.college}-${major.major_name}`);
+          });
         console.log("학과 입력>");
-        let professor_major = await Input.getUserInput();
+        // let professor_major = await Input.getUserInput();
+        let selectedMajorIndex = await Input.getUserInput();
+        let selectedMajor = majors[selectedMajorIndex - 1];
+        let professor_major = selectedMajor.major_name;
         updatemongo = { $set: { professor_major: professor_major } };
         await collection.updateOne({ professor_id: Number(professor_id) }, updatemongo);
         console.log(`학과가 ${professor_major}로 수정되었습니다`);
@@ -88,9 +91,10 @@ async function main1(client) {
 // 데이터베이스에서 전공 목록을 가져오는 함수
 async function getMajorList(client) {
   const majorCollection = client.db('number1').collection('major');
-  const majors = await majorCollection.distinct('major_name');
+  const majors = await majorCollection.find().toArray();
   return majors;
 }
+
 function wait(timeToDelay){
   return new Promise((resolve) => setTimeout(resolve, timeToDelay))
 }
